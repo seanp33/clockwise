@@ -1,0 +1,16 @@
+{
+  "name": "clockwise",
+  "version": "0.1.0",
+  "description": "a game of time",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/smonaghan/clockwise.git"
+  },
+  "author": "Sean Monaghan <smonaghan@eitccorp.com>",
+  "license": "UNLICENSED",
+  "homepage": "https://bitbucket.org/smonaghan/clockwise#readme"
+}
