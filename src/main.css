@@ -1,0 +1,13 @@
+body {
+    margin: 30px;
+    background-color: #fcfcfc;
+}
+
+#game {
+    background-color:#fff;
+    text-align: center;
+    width: 90%;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}

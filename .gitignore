@@ -1,0 +1,16 @@
+node_modules/
+typings/
+_build/
+dist/
+static/
+*.*~
+*~
+*#*#
+*.iml
+*.ipr
+*.iws
+*.ids
+*.log
+.idea
+*.DS_Store
+.vscode
