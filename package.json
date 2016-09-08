@@ -4,6 +4,7 @@
   "description": "a game of time",
   "main": "game.js",
   "scripts": {
+    "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,5 +13,20 @@
   },
   "author": "Sean Monaghan <smonaghan@eitccorp.com>",
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/smonaghan/clockwise#readme"
+  "homepage": "https://bitbucket.org/smonaghan/clockwise#readme",
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "matchdep": "^1.0.1",
+    "tsify": "^1.0.5",
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "moment": "^2.14.1",
+    "pixi.js": "^4.0.1"
+  }
 }
