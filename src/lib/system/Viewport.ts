@@ -20,25 +20,26 @@ const ERROR_INITIALIZATION: string = 'A Viewport must be initialized before it c
 
 export class Viewport {
     private _renderer: PIXI.WebGLRenderer
-    private _tick: number
+    private _ticker: PIXI.ticker.Ticker
 
     constructor(private _config: ViewportConfig) { }
 
     initialize(): HTMLCanvasElement {
         if (this._renderer) throw new Error('')
         this._renderer = new PIXI.WebGLRenderer(this._config.width, this._config.height)
+        this._ticker = new PIXI.ticker.Ticker()
         return this.view
     }
 
     run(): void {
         if (!this.initialized) throw new Error(ERROR_INITIALIZATION)
-        if (this._tick) return
-        this._animate()
+        if (this._ticker.started) return
+        this._ticker.add(this._render.bind(this))
+        this._ticker.start()
     }
 
     pause(): void {
-        if (!this._tick) return
-        cancelAnimationFrame(this._tick)
+        this._ticker.stop()
     }
 
     mount(element: HTMLElement): void {
@@ -46,8 +47,7 @@ export class Viewport {
         element.appendChild(this._renderer.view);
     }
 
-    _animate(): void {
-        this._tick = requestAnimationFrame(this._animate.bind(this))
+    _render(deltaTime: number): void {
         this._renderer.render(this._config.root)
     }
 
