@@ -3,11 +3,11 @@ body {
     background-color: #fcfcfc;
 }
 
-#game {
+#centralViewport {
     background-color:#fff;
     text-align: center;
-    width: 90%;
-    height: 90%;
+    width: 800px;
+    height: 600px;
     margin-left: auto;
     margin-right: auto;
 }
