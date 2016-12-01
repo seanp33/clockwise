@@ -70,12 +70,26 @@ module.exports = function (grunt) {
                     keepAlive: false
                 }
             }
+        },
+        mochaTest: {
+            all: {
+                src: ['./src/tests/**/*.test.ts'],
+                options: {
+                    reporter: 'spec',
+                    require: ['ts-node/register'],
+                    debug: true
+                }
+            }
         }
     })
 
     grunt.registerTask('default', [
         'clean:build',
         'debug-build'
+    ]);
+
+    grunt.registerTask('unit', [
+        'mochaTest:all'
     ]);
 
     grunt.registerTask('debug-build', [
