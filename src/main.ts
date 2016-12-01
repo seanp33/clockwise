@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js'
 
-import {Player} from './lib/core/Player' // TODO: remove test code
+import {Player} from './lib/core/actors' // TODO: remove test code
 import {ViewportConfig, Viewport} from './lib/system/Viewport'
 
 let stage: PIXI.Container = new PIXI.Container()
@@ -13,6 +13,6 @@ window.onload = () => {
     centralViewport.run()
 
     // TODO: remove test code
-    let player = new Player('Forrest')
+    let player = new Player('Forrest', Date.now())
     player.stats()
 }
