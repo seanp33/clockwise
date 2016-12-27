@@ -9,6 +9,7 @@ export const GAME_RESUMED = 'game:resumed'
 export const GAME_TERMINATING = 'game:terminating'
 export const GAME_TERMINATED = 'game:terminated'
 
-export const ACTOR_VISITING = 'actor:visiting'
-export const ACTOR_ARRIVED = 'actor:arrived'
-export const ACTOR_DEPARTING = 'actor:departing'
+// ACTOR_VISITING indicates that a timetraveler
+export const TIME_TRAVELER_VISITING = 'timetraveler:visiting'
+export const TIME_TRAVELER_ARRIVED = 'timetraveler:arrived'
+export const TIME_TRAVELER_DEPARTING = 'timetraveler:departing'

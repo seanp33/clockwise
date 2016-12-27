@@ -71,7 +71,7 @@ export class TimeFabric{
         this.unregister(channel, handler, this.persistentHandlers)
     }
 
-    public send(channel:string, payload:any):void{
+    public send(channel:string, payload?:any):void{
         if(this.oneTimeHandlers.has(channel)){
             let handlers = this.oneTimeHandlers.get(channel)
             handlers.forEach((handler) => handler(payload))
@@ -98,17 +98,17 @@ export class TimeNode{
         private children:TimeNode[] = [],
         private effectors:Effector[] = []
     ){
-        this.fabric.on(Events.GAME_INITIALIZING, this.onInitializing)
-        this.fabric.on(Events.GAME_TERMINATING, this.onTerminating)
+        this.fabric.on(Events.GAME_INITIALIZING, this.onGameInitializing)
+        this.fabric.on(Events.GAME_TERMINATING, this.onGameTerminating)
     }
 
-    private onInitializing():void{
+    protected onGameInitializing():void{
         // TODO: here is where we would prep any initialization?
     }
 
-    private onTerminating():void{
-        this.fabric.off(Events.GAME_INITIALIZING, this.onInitializing)
-        this.fabric.off(Events.GAME_TERMINATING, this.onTerminating)
+    protected onGameTerminating():void{
+        this.fabric.off(Events.GAME_INITIALIZING, this.onGameInitializing)
+        this.fabric.off(Events.GAME_TERMINATING, this.onGameTerminating)
     }
 
     public getId():TimeId{
@@ -131,12 +131,18 @@ export class TimeNode{
         this.children.push(timeNode)
     }
 
-    public onVisiting(traveler:TimeTraveler):void{
+    public visit(traveler:TimeTraveler):void{
         traveler.setPointInTime(this.pointInTime)
+        this.fabric.send(Events.TIME_TRAVELER_VISITING, traveler)
         // do we buffer these Effectors up at some point
         // add them to some datastructure where they can
-        // cancel each other other where necessary... etc
-        // or just apply them...
+        // cancel each other out where necessary, compliment oneanother, compound their effect... etc
+        // consider some form of effector filtering logic,
+        // where a stream of effectors can be assembled
+        // based on the current state of the game or any condition
+        // related to the TimeTraveler or TimeNode. We would then
+        // allow the TimeTraveler to be considered by each Effector in
+        // the the stream, as apposed to the logic below which is applicable? then apply!
         this.effectors.forEach((effector:Effector) => {
             if(effector.applicable(traveler)) effector.apply(traveler)
         })
